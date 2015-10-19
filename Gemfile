@@ -3,6 +3,12 @@ source "https://rubygems.org"
 
 ruby '2.2.3'
 
-gem 'sinatra'
+gem 'bundler', require: 'forwardable'
+gem 'faraday'
 gem 'puma'
-gem 'pry'
+gem 'rack'
+gem 'redis'
+
+group :development do
+  gem 'pry'
+end

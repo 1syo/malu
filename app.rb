@@ -1,39 +1,19 @@
-require 'sinatra/base'
-require 'net/https'
-require 'pry'
+require 'bundler/setup'
+Bundler.require(:default, ENV['RACK_ENV'])
 
-class Coveralls
-  def initialize(env)
-    @env = env
-  end
+$LOAD_PATH << File.expand_path('../lib', __FILE__)
+require 'postman'
+require 'request'
+require 'route'
 
-  def self.post(env)
-    new(env).post
-  end
+class App
+  def self.call(env)
+    request = Request.new(env: env)
 
-  def post
-    ENV['URLS'].split(",").each do |url|
-      uri = URI.parse(url.strip)
-      req = Net::HTTP::Post.new(uri.path)
-      req['Accept'] = '*/*; q=0.5, application/xml'
-      req['Accept-Encoding'] = 'gzip, deflate'
-      req.body = @env['rack.request.form_vars']
-      Net::HTTP.new(uri.host, uri.port).tap do |https|
-        https.use_ssl = true
-        https.start { https.request(req) }
-      end
+    Route.new.get(request.path_info).each do |url|
+      Postman.new(url: url, request: request).post
     end
-  end
-end
 
-
-class App < Sinatra::Base
-  get '/' do
-    ''
-  end
-
-  post '/coveralls' do
-    Coveralls.post(env)
-    'OK'
+    [200, {'Content-Type' => 'text/plain'}, ['OK']]
   end
 end
