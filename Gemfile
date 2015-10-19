@@ -3,11 +3,11 @@ source "https://rubygems.org"
 
 ruby '2.2.3'
 
-gem 'rack'
-gem 'thin'
-gem 'faraday'
-gem 'redis'
 gem 'bundler', require: 'forwardable'
+gem 'faraday'
+gem 'puma'
+gem 'rack'
+gem 'redis'
 
 group :development do
   gem 'pry'
