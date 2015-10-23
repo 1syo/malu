@@ -1,0 +1,24 @@
+
+AllCops:
+  DisplayCopNames: true
+
+Style/AsciiComments:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/DoubleNegation:
+  Enabled: false
+
+Style/FormatString:
+  EnforcedStyle: percent
+
+Style/NumericLiterals:
+  MinDigits: 7
+
+Style/SignalException:
+  EnforcedStyle: only_raise
+
+Metrics/LineLength:
+  Max: 120

@@ -1,6 +1,7 @@
 class Postman
   def initialize(url:, request:)
-    @url, @_request = url, request
+    @url = url
+    @_request = request
   end
 
   def post
@@ -15,7 +16,7 @@ class Postman
   def conn
     @_conn ||= ::Faraday.new(url: @url) do |faraday|
       faraday.response :logger
-      faraday.adapter  Faraday.default_adapter
+      faraday.adapter Faraday.default_adapter
     end
   end
 end
