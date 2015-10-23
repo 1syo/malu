@@ -10,9 +10,13 @@ require 'store'
 class App
   def self.call(env)
     request = Request.new(env: env)
+    routing_set = RoutingSet.new(request: request)
 
-    routing_set = RoutingSet.new
-    routing_set.routes(method: request.method, path: request.path).each do |url|
+    unless routing_set.match?
+      return [404, { 'Content-Type' => 'text/plain' }, ['NOT FOUND']]
+    end
+
+    routing_set.routes.each do |url|
       Postman.new(url: url, request: request).post
     end
 
