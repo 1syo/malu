@@ -1,6 +1,6 @@
 class RoutingSet
   def routes(method:, path:)
-    store.get("#{method} #{path}")
+    store.get("#{method}#{path}")
   end
 
   private
