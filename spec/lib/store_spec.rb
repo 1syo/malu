@@ -29,19 +29,19 @@ describe Store do
 
   describe '#get' do
     before do
-      @store.add('POST/hook1', 'https://a.example.com?b=c')
-      @store.add('POST/hook1', 'https://x.example.com?y=z')
-      @store.add('POST/hook2', 'https://1.example.com?2=3')
+      @store.add('POST/hook/1', 'https://a.example.com?b=c')
+      @store.add('POST/hook/1', 'https://x.example.com?y=z')
+      @store.add('POST/hook/2', 'https://1.example.com?2=3')
     end
 
     it 'include urls' do
-      assert { @store.get('POST/hook1').include?('https://a.example.com?b=c') }
-      assert { @store.get('POST/hook1').include?('https://x.example.com?y=z') }
-      assert { @store.get('POST/hook1').include?('https://1.example.com?2=3') == false }
+      assert { @store.get('POST/hook/1').include?('https://a.example.com?b=c') }
+      assert { @store.get('POST/hook/1').include?('https://x.example.com?y=z') }
+      assert { @store.get('POST/hook/1').include?('https://1.example.com?2=3') == false }
     end
 
     it 'not exists' do
-      assert { @store.get('POST/hook3') == [] }
+      assert { @store.get('POST/hook/3') == [] }
     end
   end
 

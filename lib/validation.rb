@@ -1,6 +1,6 @@
 module Validation
   def ensure_format(key)
-    if key =~ %r{\A(GET|PUT|POST|DELETE|HEAD)\/[a-z0-9_]+\z}
+    if key =~ %r{\A(GET|PUT|POST|DELETE|HEAD)\/[a-z0-9_\/]+\z}
       true
     else
       false
