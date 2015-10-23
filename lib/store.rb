@@ -23,6 +23,10 @@ class Store
     conn.smembers(key)
   end
 
+  def exists?(key)
+    conn.exists(key)
+  end
+
   def del(key)
     get(key).all? { |val| conn.srem(key, val) }
   end
