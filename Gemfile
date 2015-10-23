@@ -14,6 +14,7 @@ group :development, :test do
 end
 
 group :test do
+  gem 'hashie'
   gem 'minitest'
   gem 'minitest-power_assert'
   gem 'webmock'

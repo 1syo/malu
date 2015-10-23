@@ -55,6 +55,20 @@ describe Store do
     end
   end
 
+  describe '#exists?' do
+    before do
+      @store.add('POST/hook1', 'https://a.example.com?b=c')
+    end
+
+    it 'valid' do
+      assert { @store.exists?('POST/hook1') }
+    end
+
+    it 'invalid' do
+      assert { @store.exists?('POST/hook2') == false }
+    end
+  end
+
   describe '.all' do
     before do
       @store.add('POST/hook1', 'https://a.example.com?b=c')

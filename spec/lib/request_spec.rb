@@ -15,7 +15,7 @@ describe Request do
   end
 
   it '#method equal POST' do
-    assert { @req.method == 'POST' }
+    assert { @req.request_method == 'POST' }
   end
 
   it '#path equal /hook' do

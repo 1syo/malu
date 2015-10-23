@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'hashie'
 
 describe RoutingSet do
   before do
@@ -21,13 +22,34 @@ describe RoutingSet do
     end
 
     it 'existing routes' do
-      values = RoutingSet.new.routes method: 'GET', path: '/hook'
-      assert { values.all? { |val| @routes.include?(val) } }
+      request = Hashie::Mash.new(request_method: 'GET', path: '/hook')
+      route_set = RoutingSet.new(request: request)
+      assert { route_set.routes.all? { |val| @routes.include?(val) } }
     end
 
     it 'not existing routes' do
-      values = RoutingSet.new.routes method: 'GET', path: '/hook1'
-      assert { values == [] }
+      request = Hashie::Mash.new(request_method: 'GET', path: '/hook1')
+      route_set = RoutingSet.new(request: request)
+      assert { route_set.routes == [] }
+    end
+  end
+
+  describe '#match' do
+    before do
+      @store.add 'GET/hook', 'http://example.com?bar=baz'
+      @store.add 'POST/hook', 'http://example.com?key=val'
+    end
+
+    it 'valid' do
+      request = Hashie::Mash.new(request_method: 'GET', path: '/hook')
+      route_set = RoutingSet.new(request: request)
+      assert { route_set.match? }
+    end
+
+    it 'invalid' do
+      request = Hashie::Mash.new(request_method: 'HEAD', path: '/hook')
+      route_set = RoutingSet.new(request: request)
+      assert { route_set.match? == false }
     end
   end
 end
