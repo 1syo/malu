@@ -1,6 +1,15 @@
 class RoutingSet
-  def routes(method:, path:)
-    store.get("#{method}#{path}")
+
+  def initialize(request: request)
+    @key = "#{request.request_method}#{request.path}"
+  end
+
+  def match?
+    store.exists?(@key)
+  end
+
+  def routes
+    store.get(@key)
   end
 
   private
