@@ -1,5 +1,5 @@
 # A sample Gemfile
-source "https://rubygems.org"
+source 'https://rubygems.org'
 
 ruby '2.2.3'
 
@@ -9,6 +9,14 @@ gem 'puma'
 gem 'rack'
 gem 'redis'
 
-group :development do
+group :development, :test do
   gem 'pry'
+end
+
+group :test do
+  gem 'minitest'
+  gem 'minitest-power_assert'
+  gem 'webmock'
+  gem 'vcr'
+  gem 'coveralls', require: false
 end
