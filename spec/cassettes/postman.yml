@@ -1,0 +1,46 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://www.example.com/
+    body:
+      encoding: ASCII-8BIT
+      string: foo=bar&quux=bla
+    headers:
+      User-Agent:
+      - curl/7.43.0
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept:
+      - "*/*"
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 23 Oct 2015 11:46:03 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '622'
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Methods:
+      - GET, PUT, POST, PATCH, DELETE, OPTIONS, HEAD
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Server:
+      - Runscope-Gateway/1.0
+      Runscope-Message-Id:
+      - ceeb5342-372d-405b-808e-3231b65fc845
+      Access-Control-Allow-Origin:
+      - "*"
+    body:
+      encoding: ASCII-8BIT
+      string: '{"body":"foo=bar\u0026quux=bla","files":[],"form":{"foo":["bar"],"quux":["bla"]},"fragment":"","headers":{"Accept":["*/*"],"Accept-Encoding":["gzip;q=1.0,deflate;q=0.6,identity;q=0.3"],"Connection":["close"],"Content-Length":["16"],"Content-Type":["application/x-www-form-urlencoded"],"Host":["x97upw90v5uh.runscope.net"],"User-Agent":["curl/7.43.0"]},"host":"x97upw90v5uh.runscope.net","method":"POST","params":{},"path":"/","region":"jp1","runscope_host":"prod097.runscope.in","scheme":"https","source":"capture","source_ip":"153.201.196.46","timestamp":1.4456007633943996e+09,"url":"https://x97upw90v5uh.runscope.net/"}'
+    http_version: 
+  recorded_at: Fri, 23 Oct 2015 11:46:03 GMT
+recorded_with: VCR 2.9.3
