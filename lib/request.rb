@@ -1,7 +1,6 @@
 class Request
   extend Forwardable
-  def_delegator :@_request, :path, :path
-  def_delegator :@_request, :request_method, :method
+  def_delegators :@_request, :path, :request_method
 
   def initialize(env:)
     @_request = Rack::Request.new(env)
