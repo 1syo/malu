@@ -14,10 +14,10 @@ describe RoutingSet do
       @routes = ['http://example.com?bar=baz', 'http://example.com?key=val']
 
       @routes.each do |route|
-        @store.add 'GET /hook', route
+        @store.add 'GET/hook', route
       end
 
-      @store.add 'POST /hook', 'https://example.com?page=2'
+      @store.add 'POST/hook', 'https://example.com?page=2'
     end
 
     it 'existing routes' do
