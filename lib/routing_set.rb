@@ -1,6 +1,5 @@
 class RoutingSet
-
-  def initialize(request: request)
+  def initialize(request: nil)
     @key = "#{request.request_method}#{request.path}"
   end
 
